@@ -1,0 +1,38 @@
+{
+    "generator-jhipster": {
+        "promptValues": {
+            "packageName": "com.xarala.yoonnee",
+            "nativeLanguage": "fr"
+        },
+        "jhipsterVersion": "5.8.1",
+        "applicationType": "monolith",
+        "baseName": "yoonnee",
+        "packageName": "com.xarala.yoonnee",
+        "packageFolder": "com/xarala/yoonnee",
+        "serverPort": "8080",
+        "authenticationType": "jwt",
+        "cacheProvider": "ehcache",
+        "enableHibernateCache": false,
+        "websocket": false,
+        "databaseType": "mongodb",
+        "devDatabaseType": "mongodb",
+        "prodDatabaseType": "mongodb",
+        "searchEngine": false,
+        "messageBroker": false,
+        "serviceDiscoveryType": false,
+        "buildTool": "maven",
+        "enableSwaggerCodegen": false,
+        "jwtSecretKey": "YmRiZjkwYzRmMGZlZmE0MGE4ZWM5OGVmMGQzM2Y1ZTcyM2U5YjdhYzlmMTllY2RhMGVjYjUwYWUxMGFkOWJlZmQ5N2M1YTllNzFlZDU1YjlkZTNhZDI5MTg0ZGZlNmI4YTVlYjE1Mzc4ZTBmYTUyYjRhYjVhYWNjMzYxM2UwNDg=",
+        "clientFramework": "angularX",
+        "useSass": true,
+        "clientPackageManager": "npm",
+        "testFrameworks": [],
+        "jhiPrefix": "jhi",
+        "entitySuffix": "",
+        "dtoSuffix": "DTO",
+        "otherModules": [],
+        "enableTranslation": true,
+        "nativeLanguage": "fr",
+        "languages": ["fr", "en"]
+    }
+}
