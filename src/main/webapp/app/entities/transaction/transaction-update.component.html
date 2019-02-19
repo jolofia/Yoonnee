@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-transaction-heading" jhiTranslate="yoonneeApp.transaction.home.createOrEditLabel">Create or edit a Transaction</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!transaction.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="transaction.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="yoonneeApp.transaction.emetteur" for="field_emetteur">Emetteur</label>
+                    <input type="text" class="form-control" name="emetteur" id="field_emetteur"
+                        [(ngModel)]="transaction.emetteur" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="yoonneeApp.transaction.agenceEmetteur" for="field_agenceEmetteur">Agence Emetteur</label>
+                    <input type="text" class="form-control" name="agenceEmetteur" id="field_agenceEmetteur"
+                        [(ngModel)]="transaction.agenceEmetteur" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="yoonneeApp.transaction.recepteur" for="field_recepteur">Recepteur</label>
+                    <input type="text" class="form-control" name="recepteur" id="field_recepteur"
+                        [(ngModel)]="transaction.recepteur" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="yoonneeApp.transaction.agenceRecepteur" for="field_agenceRecepteur">Agence Recepteur</label>
+                    <input type="text" class="form-control" name="agenceRecepteur" id="field_agenceRecepteur"
+                        [(ngModel)]="transaction.agenceRecepteur" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="yoonneeApp.transaction.montantEnvoye" for="field_montantEnvoye">Montant Envoye</label>
+                    <input type="number" class="form-control" name="montantEnvoye" id="field_montantEnvoye"
+                        [(ngModel)]="transaction.montantEnvoye" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="yoonneeApp.transaction.comission" for="field_comission">Comission</label>
+                    <input type="number" class="form-control" name="comission" id="field_comission"
+                        [(ngModel)]="transaction.comission" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="yoonneeApp.transaction.montantRecu" for="field_montantRecu">Montant Recu</label>
+                    <input type="number" class="form-control" name="montantRecu" id="field_montantRecu"
+                        [(ngModel)]="transaction.montantRecu" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

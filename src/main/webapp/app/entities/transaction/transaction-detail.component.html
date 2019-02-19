@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="transaction">
+            <h2><span jhiTranslate="yoonneeApp.transaction.detail.title">Transaction</span> {{transaction.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="yoonneeApp.transaction.emetteur">Emetteur</span></dt>
+                <dd>
+                    <span>{{transaction.emetteur}}</span>
+                </dd>
+                <dt><span jhiTranslate="yoonneeApp.transaction.agenceEmetteur">Agence Emetteur</span></dt>
+                <dd>
+                    <span>{{transaction.agenceEmetteur}}</span>
+                </dd>
+                <dt><span jhiTranslate="yoonneeApp.transaction.recepteur">Recepteur</span></dt>
+                <dd>
+                    <span>{{transaction.recepteur}}</span>
+                </dd>
+                <dt><span jhiTranslate="yoonneeApp.transaction.agenceRecepteur">Agence Recepteur</span></dt>
+                <dd>
+                    <span>{{transaction.agenceRecepteur}}</span>
+                </dd>
+                <dt><span jhiTranslate="yoonneeApp.transaction.montantEnvoye">Montant Envoye</span></dt>
+                <dd>
+                    <span>{{transaction.montantEnvoye}}</span>
+                </dd>
+                <dt><span jhiTranslate="yoonneeApp.transaction.comission">Comission</span></dt>
+                <dd>
+                    <span>{{transaction.comission}}</span>
+                </dd>
+                <dt><span jhiTranslate="yoonneeApp.transaction.montantRecu">Montant Recu</span></dt>
+                <dd>
+                    <span>{{transaction.montantRecu}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/transaction', transaction.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
