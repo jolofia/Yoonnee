@@ -1,0 +1,19 @@
+{
+    "name": "Agence",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190213210756",
+    "entityTableName": "agence",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

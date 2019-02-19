@@ -1,0 +1,43 @@
+{
+    "name": "Transaction",
+    "fields": [
+        {
+            "fieldName": "emetteur",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "agenceEmetteur",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "recepteur",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "agenceRecepteur",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "montantEnvoye",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "comission",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "montantRecu",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190213210755",
+    "entityTableName": "transaction",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
