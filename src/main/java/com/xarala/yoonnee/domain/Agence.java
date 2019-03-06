@@ -6,12 +6,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.List;
 
 /**
  * A Agence.
@@ -28,7 +26,6 @@ public class Agence implements Serializable {
     @Id
     private String id;
 
-    @Field("nom")
     private String nom;
 
     private String adresse;
@@ -36,4 +33,8 @@ public class Agence implements Serializable {
     private String ville;
 
     private String pays;
+
+    private String telephone;
+
+    private List<String> gerants;
 }

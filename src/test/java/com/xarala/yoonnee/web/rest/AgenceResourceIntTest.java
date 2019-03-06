@@ -1,11 +1,9 @@
 package com.xarala.yoonnee.web.rest;
 
 import com.xarala.yoonnee.YoonneeApp;
-
 import com.xarala.yoonnee.domain.Agence;
 import com.xarala.yoonnee.repository.AgenceRepository;
 import com.xarala.yoonnee.web.rest.errors.ExceptionTranslator;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +19,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.validation.Validator;
 
 import java.util.List;
-
 
 import static com.xarala.yoonnee.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -60,6 +57,18 @@ public class AgenceResourceIntTest {
 
     private Agence agence;
 
+    /**
+     * Create an entity for this test.
+     * <p>
+     * This is a static method, as tests for other entities might also need it,
+     * if they test an entity which requires the current entity.
+     */
+    public static Agence createEntity() {
+        return Agence.builder()
+            .nom(DEFAULT_NOM)
+            .build();
+    }
+
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
@@ -70,18 +79,6 @@ public class AgenceResourceIntTest {
             .setConversionService(createFormattingConversionService())
             .setMessageConverters(jacksonMessageConverter)
             .setValidator(validator).build();
-    }
-
-    /**
-     * Create an entity for this test.
-     *
-     * This is a static method, as tests for other entities might also need it,
-     * if they test an entity which requires the current entity.
-     */
-    public static Agence createEntity() {
-        Agence agence = new Agence()
-            .nom(DEFAULT_NOM);
-        return agence;
     }
 
     @Before
@@ -137,7 +134,7 @@ public class AgenceResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(agence.getId())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM.toString())));
     }
-    
+
     @Test
     public void getAgence() throws Exception {
         // Initialize the database
@@ -168,7 +165,7 @@ public class AgenceResourceIntTest {
         // Update the agence
         Agence updatedAgence = agenceRepository.findById(agence.getId()).get();
         updatedAgence
-            .nom(UPDATED_NOM);
+            .setNom(UPDATED_NOM);
 
         restAgenceMockMvc.perform(put("/api/agences")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -216,17 +213,4 @@ public class AgenceResourceIntTest {
         assertThat(agenceList).hasSize(databaseSizeBeforeDelete - 1);
     }
 
-    @Test
-    public void equalsVerifier() throws Exception {
-        TestUtil.equalsVerifier(Agence.class);
-        Agence agence1 = new Agence();
-        agence1.setId("id1");
-        Agence agence2 = new Agence();
-        agence2.setId(agence1.getId());
-        assertThat(agence1).isEqualTo(agence2);
-        agence2.setId("id2");
-        assertThat(agence1).isNotEqualTo(agence2);
-        agence1.setId(null);
-        assertThat(agence1).isNotEqualTo(agence2);
-    }
 }
