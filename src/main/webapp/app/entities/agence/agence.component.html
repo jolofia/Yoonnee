@@ -14,8 +14,9 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="yoonneeApp.agence.nom">Nom</span></th>
+                <th><span jhiTranslate="global.field.id">ID</span></th>
+                <th><span jhiTranslate="yoonneeApp.agence.nom">Nom</span></th>
+                <th><span jhiTranslate="yoonneeApp.agence.ville">Ville</span></th>
             <th></th>
             </tr>
             </thead>
@@ -23,6 +24,7 @@
             <tr *ngFor="let agence of agences ;trackBy: trackId">
                 <td><a [routerLink]="['/agence', agence.id, 'view' ]">{{agence.id}}</a></td>
                 <td>{{agence.nom}}</td>
+                <td>{{agence.ville}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

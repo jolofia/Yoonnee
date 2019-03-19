@@ -15,7 +15,11 @@
             "detail": {
                 "title": "Agence"
             },
-            "nom": "Nom"
+            "nom": "Nom",
+            "adresse": "Adresse",
+            "ville": "Ville",
+            "pays": "Pays",
+            "telephone": "Telephone"
         }
     }
 }
