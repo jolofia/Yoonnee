@@ -36,5 +36,5 @@ public class Agence implements Serializable {
 
     private String telephone;
 
-    private List<String> gerants;
+    private List<Gerant> gerants;
 }

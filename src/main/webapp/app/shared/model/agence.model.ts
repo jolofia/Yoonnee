@@ -1,6 +1,17 @@
 export interface IAgence {
     id?: string;
     nom?: string;
+    adresse?: string;
+    ville?: string;
+    pays?: string;
+    telephone?: string;
+    gerants?: Gerant[];
+}
+
+export interface Gerant {
+    name?: string;
+    telephone?: string;
+    email?: string;
 }
 
 export class Agence implements IAgence {

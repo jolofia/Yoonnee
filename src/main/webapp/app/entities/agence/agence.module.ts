@@ -1,23 +1,24 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
 import { JhiLanguageHelper } from 'app/core';
 
 import { YoonneeSharedModule } from 'app/shared';
+import { JhiLanguageService } from 'ng-jhipster';
 import {
     AgenceComponent,
-    AgenceDetailComponent,
-    AgenceUpdateComponent,
-    AgenceDeletePopupComponent,
     AgenceDeleteDialogComponent,
+    AgenceDeletePopupComponent,
+    AgenceDetailComponent,
+    agencePopupRoute,
     agenceRoute,
-    agencePopupRoute
+    AgenceUpdateComponent
 } from './';
 
 const ENTITY_STATES = [...agenceRoute, ...agencePopupRoute];
 
 @NgModule({
-    imports: [YoonneeSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [YoonneeSharedModule, RouterModule.forChild(ENTITY_STATES), ReactiveFormsModule],
     declarations: [AgenceComponent, AgenceDetailComponent, AgenceUpdateComponent, AgenceDeleteDialogComponent, AgenceDeletePopupComponent],
     entryComponents: [AgenceComponent, AgenceUpdateComponent, AgenceDeleteDialogComponent, AgenceDeletePopupComponent],
     providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],

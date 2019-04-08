@@ -1,9 +1,9 @@
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Gerant, IAgence } from 'app/shared/model/agence.model';
 import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { IAgence } from 'app/shared/model/agence.model';
 import { AgenceService } from './agence.service';
 
 @Component({
@@ -13,13 +13,30 @@ import { AgenceService } from './agence.service';
 export class AgenceUpdateComponent implements OnInit {
     agence: IAgence;
     isSaving: boolean;
+    form: FormGroup;
 
-    constructor(protected agenceService: AgenceService, protected activatedRoute: ActivatedRoute) {}
+    constructor(private agenceService: AgenceService, private activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+
+    get gerants(): FormArray {
+        return this.form.get('gerants') as FormArray;
+    }
 
     ngOnInit() {
         this.isSaving = false;
+
         this.activatedRoute.data.subscribe(({ agence }) => {
+            console.log(agence);
             this.agence = agence;
+            this.form = this.fb.group({
+                id: [this.agence.id],
+                nom: [this.agence.nom],
+                adresse: [this.agence.adresse],
+                ville: [this.agence.ville],
+                pays: [this.agence.pays],
+                telephone: [this.agence.telephone],
+                gerants: this.fb.array([])
+            });
+            this.addGerant(this.agence.gerants);
         });
     }
 
@@ -29,11 +46,26 @@ export class AgenceUpdateComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        if (this.agence.id !== undefined) {
+        this.agence = this.form.value;
+        if (this.agence.id) {
             this.subscribeToSaveResponse(this.agenceService.update(this.agence));
         } else {
             this.subscribeToSaveResponse(this.agenceService.create(this.agence));
         }
+    }
+
+    addGerant(gerants?: Gerant[]) {
+        if (gerants) {
+            gerants.forEach(g => {
+                this.gerants.push(this.createGerantControl(g));
+            });
+        } else {
+            this.gerants.push(this.createGerantControl());
+        }
+    }
+
+    delGerant(index) {
+        this.gerants.removeAt(index);
     }
 
     protected subscribeToSaveResponse(result: Observable<HttpResponse<IAgence>>) {
@@ -47,5 +79,16 @@ export class AgenceUpdateComponent implements OnInit {
 
     protected onSaveError() {
         this.isSaving = false;
+    }
+
+    private createGerantControl(gerant?: Gerant) {
+        if (!gerant) {
+            gerant = {};
+        }
+        return this.fb.group({
+            name: [gerant.name],
+            telephone: [gerant.telephone],
+            email: [gerant.email]
+        });
     }
 }

@@ -1,44 +1,79 @@
 <div class="row justify-content-center">
     <div class="col-8">
-        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+        <form name="editForm" role="form" [formGroup]="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
             <h2 id="jhi-agence-heading" jhiTranslate="yoonneeApp.agence.home.createOrEditLabel">Create or edit a Agence</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!agence.id">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
                     <input type="text" class="form-control" id="id" name="id"
-                        [(ngModel)]="agence.id" readonly />
+                           formControlName="id" readonly/>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="yoonneeApp.agence.nom" for="field_nom">Nom</label>
                     <input type="text" class="form-control" name="nom" id="field_nom"
-                        [(ngModel)]="agence.nom" />
+                           formControlName="nom"/>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="yoonneeApp.agence.adresse"
                            for="field_adresse">Adresse</label>
                     <input type="text" class="form-control" name="adresse" id="field_adresse"
-                           [(ngModel)]="agence.adresse"/>
+                           formControlName="adresse"/>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="yoonneeApp.agence.ville"
                            for="field_ville">Ville</label>
                     <input type="text" class="form-control" name="ville" id="field_ville"
-                           [(ngModel)]="agence.ville"/>
+                           formControlName="ville"/>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="yoonneeApp.agence.pays"
                            for="field_pays">Pays</label>
                     <input type="text" class="form-control" name="pays" id="field_pays"
-                           [(ngModel)]="agence.pays"/>
+                           formControlName="pays"/>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="yoonneeApp.agence.telephone"
                            for="field_telephone">Telephone</label>
                     <input type="text" class="form-control" name="telephone" id="field_telephone"
-                           [(ngModel)]="agence.telephone"/>
+                           formControlName="telephone"/>
                 </div>
+                <div>
+                    <h5>Gérants
+                        <a class="btn btn-primary btn-sm" (click)="addGerant()">
+                            <fa-icon [icon]="'plus'"></fa-icon>
+                        </a>
+                    </h5>
 
+                </div>
+                <div class="form-group" formArrayName="gerants"
+                     *ngFor="let g of gerants.controls; let idx = index">
+                    <fieldset [formGroupName]="idx">
+                        <legend>Gérant {{idx + 1}}
+                            <a (click)="delGerant(idx)" style="font-size: 10px; color:darkred;">remove</a>
+                        </legend>
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="form-control-label" jhiTranslate="yoonneeApp.agence.gerant.name"
+                                       for="field_gerant_name">Name</label>
+                                <input type="text" class="form-control" name="name" id="field_gerant_name"
+                                       formControlName="name"/>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-control-label" jhiTranslate="yoonneeApp.agence.gerant.telephone"
+                                       for="field_gerant_telephone">Tel</label>
+                                <input type="text" class="form-control" name="telephone" id="field_gerant_telephone"
+                                       formControlName="telephone"/>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-control-label" jhiTranslate="yoonneeApp.agence.gerant.email"
+                                       for="field_gerant_email">Email</label>
+                                <input type="text" class="form-control" name="email" id="field_gerant_email"
+                                       formControlName="email"/>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
