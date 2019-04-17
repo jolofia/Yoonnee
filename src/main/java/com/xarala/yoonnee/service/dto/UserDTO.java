@@ -1,14 +1,14 @@
 package com.xarala.yoonnee.service.dto;
 
 import com.xarala.yoonnee.config.Constants;
-
+import com.xarala.yoonnee.domain.Agence;
 import com.xarala.yoonnee.domain.Authority;
 import com.xarala.yoonnee.domain.User;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-
-import javax.validation.constraints.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -53,6 +53,8 @@ public class UserDTO {
 
     private Set<String> authorities;
 
+    private Agence agence;
+
     public UserDTO() {
         // Empty constructor needed for Jackson.
     }
@@ -70,9 +72,18 @@ public class UserDTO {
         this.createdDate = user.getCreatedDate();
         this.lastModifiedBy = user.getLastModifiedBy();
         this.lastModifiedDate = user.getLastModifiedDate();
+        this.agence = user.getAgence();
         this.authorities = user.getAuthorities().stream()
             .map(Authority::getName)
             .collect(Collectors.toSet());
+    }
+
+    public Agence getAgence() {
+        return agence;
+    }
+
+    public void setAgence(Agence agence) {
+        this.agence = agence;
     }
 
     public String getId() {

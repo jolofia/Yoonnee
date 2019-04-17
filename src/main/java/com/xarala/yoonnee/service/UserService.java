@@ -9,8 +9,9 @@ import com.xarala.yoonnee.security.AuthoritiesConstants;
 import com.xarala.yoonnee.security.SecurityUtils;
 import com.xarala.yoonnee.service.dto.UserDTO;
 import com.xarala.yoonnee.service.util.RandomUtil;
-import com.xarala.yoonnee.web.rest.errors.*;
-
+import com.xarala.yoonnee.web.rest.errors.EmailAlreadyUsedException;
+import com.xarala.yoonnee.web.rest.errors.InvalidPasswordException;
+import com.xarala.yoonnee.web.rest.errors.LoginAlreadyUsedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
@@ -208,6 +209,7 @@ public class UserService {
                 user.setImageUrl(userDTO.getImageUrl());
                 user.setActivated(userDTO.isActivated());
                 user.setLangKey(userDTO.getLangKey());
+                user.setAgence(userDTO.getAgence());
                 Set<Authority> managedAuthorities = user.getAuthorities();
                 managedAuthorities.clear();
                 userDTO.getAuthorities().stream()
